@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI CALCULATOR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-align: center;
+        background-image: url(https://t3.ftcdn.net/jpg/05/52/02/48/360_F_552024844_isRBAhrNMiqmKg8EkgQGHjH4tUHK1ZUg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+    
+        form {
+            border: 4px solid;
+            border-radius: 20px;
+            margin: 30px auto;
+            border-width: 3px;
+            width: 75%;
+            padding: 20px;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+
+<body>
+    
+
+<div class="container">
+
+    <h1>BMI CALCULATOR</h1>
+    <p><b>Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women. View the BMI tables or use the tool below to compute yours. </b>   </p>
+    
+<img src="https://blk-pediatric-practice.com/wp-content/uploads/2021/06/obesity-title-image.jpg" height="200" width="300" alt="BMI Image" class="img-fluid mb-4">
+
+    <form id="bmiForm" onsubmit="calculateBMI(event)">
+        <div class="mb-3">
+            <label for="weight" class="form-label">Weight (kg)</label>
+            <input type="number" class="form-control" id="weight" required placeholder="Example : 70">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="height" class="form-label">Height (m)</label>
+            <input type="number" step="0.01" class="form-control" id="height" required placeholder="Example : 1.75">
+</div>
+        
+
+<button type="submit" class="btn btn-success">Calculate BMI</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculateBMI(event) {
+            event.preventDefault(); 
+    
+           
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+    
+           
+            if (weight <= 0 || height <= 0) {
+                document.getElementById("result").innerText = "Please enter valid positive values for weight and height.";
+                return;
+            }
+           
+        const bmi = weight / (height * height);
+
+
+let category = "";
+if (bmi < 18.5) {
+    category = "Underweight, Let's eat more!";
+} else if (bmi >= 18.5 && bmi < 24.9) {
+    category = "Normal weight, Maintain it!";
+} else if (bmi >= 25 && bmi < 29.9) {
+    category = "Overweight, Be careful!";
+} else {
+    category = "Obesity, Try to put in some exercise!";
+}
+
+document.getElementById("result").innerText = `Your BMI is ${bmi.toFixed(2)} (${category}).`;
+}
+</script>
+</body>
+</html>
